@@ -6,27 +6,57 @@ class SQLiteEmployeeRepository extends EmployeeRepository {
         super();
     }
 
-    // saveEmployee(employee) {
-    //     if (employee.id === '5') {
-    //         console.log('ERROR');
-    //         return false;
-    //     }
+    async saveEmployee(employee) {
+        let executionInsertEmployeePromise = new Promise((resolve, reject) => {
+            let db = new sqlite3.Database('./db/companydb.db', sqlite3.OPEN_READWRITE, (err) => {
+                if (err) {
+                    console.error(`ERROR IN CREATE DATABASE: ${err.message}`);
+                    process.exit(1);
+                }
+            });
 
-    //     console.log(`(${employee.id}, ${employee.name}, ${employee.type}, ${employee.isInLaborUnion}, ${employee.registrationDate}) saved!`);
+            let selectEmployeeStatement = `SELECT id FROM Employee WHERE id = '${employee.id}'`;
 
-    //     return true;
-    // }
+            db.all(selectEmployeeStatement, [], (err, rows) => {
+                if (err) {
+                    console.log(`ERROR IN SELECT STATEMENT: ${err.message}`);
+                    process.exit(1);
+                }
 
-    saveEmployee(employee) {
-        let db = new sqlite3.Database('./db/companydb.db', (err) => {
-            if (err) {
-                console.error(err.message);
-            } else {
-                console.log('Connected to the chinook database.|');
-            }
+                if (rows.length > 0) {
+                    resolve(false);
+                } else {
+                    let insertEmployeeStatement = `INSERT INTO Employee (
+                                                        id,
+                                                        name,
+                                                        type,
+                                                        isInLaborUnion,
+                                                        registrationDate
+                                                   ) VALUES (
+                                                        '${employee.id}',
+                                                        '${employee.name}',
+                                                        '${employee.type}',
+                                                        '${employee.isInLaborUnion}',
+                                                        '${employee.registrationDate}'
+                                                   )`;
+
+                    db.run(insertEmployeeStatement, [], (err) => {
+                        if (err) {
+                            console.log(`ERROR IN INSERT STATEMENT: ${err.message}`);
+                            process.exit(1);
+                        }
+                        resolve(true);
+                    });
+                }
+            });
+
+            db.close();
+
         });
 
-        return true;
+        let isSuccessfulRegistration = await executionInsertEmployeePromise;
+
+        return isSuccessfulRegistration;
     }
 }
 

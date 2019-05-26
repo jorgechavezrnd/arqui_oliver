@@ -9,7 +9,7 @@ class APIRESTController {
         this._serverResponse = serverResponse;
     }
 
-    registerEmployeeUseCase(serverRequestBody) {
+    async registerEmployeeUseCase(serverRequestBody) {
         let id = serverRequestBody.id;
         let name = serverRequestBody.name;
         let type = serverRequestBody.type;
@@ -22,7 +22,7 @@ class APIRESTController {
         let registerEmployeeRequest = new RegisterEmployeeRequest(id, name, type, isInLaborUnion);
         let registerEmployeeUseCase = new RegisterEmployeeInteractor(employeeRepository, registerEmployeePresenter);
 
-        registerEmployeeUseCase.registerEmployee(registerEmployeeRequest);
+        await registerEmployeeUseCase.registerEmployee(registerEmployeeRequest);
     }
 }
 

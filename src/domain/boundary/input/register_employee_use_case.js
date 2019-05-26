@@ -1,5 +1,5 @@
 class RegisterEmployeeUseCase {
-    registerEmployee(request) {}
+    async registerEmployee(request) {}
 }
 
 module.exports = RegisterEmployeeUseCase;

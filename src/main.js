@@ -3,33 +3,39 @@ const sqlite3 = require('sqlite3').verbose();
 const express = require('express');
 const APIRESTController = require('./presentation/apiRest/controller/api_rest_controller');
 
-function setUpDatabase() {
-    return new Promise(resolve => {
+async function CreateDatabaseIfNotExist() {
+    let executionDdlStatementsPromise = new Promise((resolve, reject) => {
         if (!fs.existsSync('./db/companydb.db')) {
             let db = new sqlite3.Database('./db/companydb.db', (err) => {
                 if (err) {
-                    console.error(err.message);
-                    process.exit();
+                    console.error(`ERROR IN CREATE DATABASE: ${err.message}`);
+                    process.exit(1);
                 }
-            })
+            });
 
-            db.run(`CREATE TABLE Employee(
-                id TEXT,
-                name TEXT,
-                type TEXT,
-                isInLaborUnion BOOLEAN,
-                registrationDate DATE
-            )`);
+            let ddlContent = fs.readFileSync('./utils/ddl.sql', 'utf8');
+            let ddlStatements = ddlContent.split(';');
+
+            ddlStatements.forEach(function(ddlStatement) {
+                if (ddlStatement.includes('CREATE')) {
+                    db.run(ddlStatement, [], (err, rows) => {
+                        if (err) {
+                            console.error(`ERROR IN DDL STATEMENT: ${err.message}`);
+                            process.exit(1);
+                        }
+                    });
+                }
+            });
 
             db.close();
 
-            console.log('DATABASE CREATED');
+            resolve('DATABASE CREATED');
         } else {
-            console.log('DATABASE ALREADY EXIST');
+            resolve('DATABASE ALREADY EXIST');
         }
-
-        resolve();
     });
+
+    await executionDdlStatementsPromise;
 }
 
 function setUpServerVariables(server) {
@@ -41,11 +47,11 @@ function setUpServerMiddlewares(server) {
 }
 
 function setUpServerRoutes(server) {
-    server.post('/registerEmployeeUseCase', (req, res) => {
+    server.post('/registerEmployeeUseCase', async (req, res) => {
         console.log('Register Employee Use Case Start');
         let apiRestController = new APIRESTController(res);
 
-        apiRestController.registerEmployeeUseCase(req.body);
+        await apiRestController.registerEmployeeUseCase(req.body);
 
         console.log('Register Employee Use Case End');
     });
@@ -58,7 +64,7 @@ function startServer(server) {
 }
 
 async function main() {
-    await setUpDatabase();
+    await CreateDatabaseIfNotExist();
 
     const server = express();
     setUpServerVariables(server);

@@ -1,5 +1,5 @@
 class EmployeeRepository {
-    saveEmployee(employee) {}
+    async saveEmployee(employee) {}
 }
 
 module.exports = EmployeeRepository;

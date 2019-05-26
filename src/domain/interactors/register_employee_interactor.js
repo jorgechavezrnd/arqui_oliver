@@ -10,7 +10,7 @@ class RegisterEmployeeInteractor extends RegisterEmployeeUseCase {
         this._registerEmployeePresenter = registerEmployeePresenter;
     }
 
-    registerEmployee(request) {
+    async registerEmployee(request) {
         let id = request.id;
         let name = request.name;
         let type = request.type;
@@ -19,7 +19,7 @@ class RegisterEmployeeInteractor extends RegisterEmployeeUseCase {
 
         let employee = new Employee(id, name, type, isInLaborUnion, registrationDate);
 
-        let isSuccessfulRegistration = this._employeeRepository.saveEmployee(employee);
+        let isSuccessfulRegistration = await this._employeeRepository.saveEmployee(employee);
 
         if (isSuccessfulRegistration) {
             let registerEmployeeResponse = new RegisterEmployeeResponse(`Empleado ${employee.name} registrado correctamente`);
