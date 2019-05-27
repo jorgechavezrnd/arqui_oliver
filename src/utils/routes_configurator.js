@@ -15,4 +15,8 @@ router.post('/registerEmployeeUseCase', async (req, res) => {
     console.log('Register Employee Use Case End');
 });
 
+router.get('/', (req, res) => {
+    res.render('employee_registration_form_view');
+});
+
 module.exports = router;

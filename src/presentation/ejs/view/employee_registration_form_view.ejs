@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Nuevo registro</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-xs-8 col-xs-offset-2">
+        <h2 class="text-center">Nuevo empleado</h2>
+        <form method="post" role="form">
+          <div class="form-group">
+            <label for="id">CI</label>
+            <input name="id" type="text" class="form-control" placeholder="CI">
+          </div>
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input name="name" type="text" class="form-control" placeholder="Nombre">
+          </div>
+          <div class="form-group">
+            <label for="type">Tipo</label>
+            <select name="type" class="form-control" id="exampleFormControlSelect1">
+              <option value="H">Por hora</option>
+              <option value="F">Fijo</option>
+              <option value="C">Comisión</option>
+            </select>
+          </div>
+          <div class="form-group">
+              <label for="isInLaborUnion">Esta en el sindicato</label>
+              <select name="isInLaborUnion" class="form-control" id="exampleFormControlSelect1">
+                <option value="1">Si</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+          <div class="form-group">
+            <button class="btn btn-primary">Registrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

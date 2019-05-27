@@ -11,6 +11,11 @@ class ServerConfigurator {
 
     static setUpServerMiddlewares(server) {
         server.use(express.json());
+        server.set(
+            'views',
+            path.join(process.cwd(), 'src', 'presentation', 'ejs', 'view')
+        );
+        server.set('view engine', 'ejs');
     }
 
     static setUpServerRoutes(server) {
