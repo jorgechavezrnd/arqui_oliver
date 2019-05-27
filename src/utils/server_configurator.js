@@ -1,8 +1,5 @@
 const express = require('express');
 const path = require('path');
-const APIRESTController = require(
-    path.join(process.cwd(), 'src', 'presentation', 'apiRest', 'controller', 'api_rest_controller')
-);
 const RoutesConfigurator = require(
     path.join(process.cwd(), 'src', 'utils', 'routes_configurator')
 );
