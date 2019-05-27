@@ -3,6 +3,9 @@ const path = require('path');
 const APIRESTController = require(
     path.join(process.cwd(), 'src', 'presentation', 'apiRest', 'controller', 'api_rest_controller')
 );
+const RoutesConfigurator = require(
+    path.join(process.cwd(), 'src', 'utils', 'routes_configurator')
+);
 
 class ServerConfigurator {
     static setUpServerVariables(server) {
@@ -14,14 +17,7 @@ class ServerConfigurator {
     }
 
     static setUpServerRoutes(server) {
-        server.post('/registerEmployeeUseCase', async (req, res) => {
-            console.log('Register Employee Use Case Start');
-            let apiRestController = new APIRESTController(res);
-    
-            await apiRestController.registerEmployeeUseCase(req.body);
-    
-            console.log('Register Employee Use Case End');
-        });
+        server.use(RoutesConfigurator);
     }
 
     static startServer(server) {
