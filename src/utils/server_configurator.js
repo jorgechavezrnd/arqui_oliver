@@ -7,15 +7,16 @@ const RoutesConfigurator = require(
 class ServerConfigurator {
     static setUpServerVariables(server) {
         server.set('port', process.env.PORT || 3000);
-    }
-
-    static setUpServerMiddlewares(server) {
-        server.use(express.json());
         server.set(
             'views',
             path.join(process.cwd(), 'src', 'presentation', 'ejs', 'view')
         );
         server.set('view engine', 'ejs');
+    }
+
+    static setUpServerMiddlewares(server) {
+        server.use(express.urlencoded({ extended: false }));
+        server.use(express.json());
     }
 
     static setUpServerRoutes(server) {
