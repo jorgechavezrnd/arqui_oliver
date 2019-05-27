@@ -1,5 +1,8 @@
-const EmployeeRepository = require('../../domain/entityGateways/employee_repository');
 const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+const EmployeeRepository = require(
+    path.join(process.cwd(), 'src', 'domain', 'entityGateways', 'employee_repository')
+);
 
 class SQLiteEmployeeRepository extends EmployeeRepository {
     constructor() {
@@ -8,7 +11,7 @@ class SQLiteEmployeeRepository extends EmployeeRepository {
 
     async saveEmployee(employee) {
         let executionInsertEmployeePromise = new Promise((resolve, reject) => {
-            let db = new sqlite3.Database('./db/companydb.db', sqlite3.OPEN_READWRITE, (err) => {
+            let db = new sqlite3.Database(path.join(process.cwd(), 'db', 'companydb.db'), sqlite3.OPEN_READWRITE, (err) => {
                 if (err) {
                     console.error(`ERROR IN CREATE DATABASE: ${err.message}`);
                     process.exit(1);

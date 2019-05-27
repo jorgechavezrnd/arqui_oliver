@@ -1,8 +1,19 @@
-const APIRESTRegisterEmployeeView = require('../view/api_rest_register_employee_view');
-const APIRESTRegisterEmployeePresenter = require('../presenter/api_rest_register_employee_presenter');
-const SQLiteEmployeeRepository = require('../../../repository/employee/sqlite_employee_repository');
-const RegisterEmployeeRequest = require('../../../domain/dto/request/register_employee_request');
-const RegisterEmployeeInteractor = require('../../../domain/interactors/register_employee_interactor');
+const path = require('path');
+const APIRESTRegisterEmployeeView = require(
+    path.join(process.cwd(), 'src', 'presentation', 'apiRest', 'view', 'api_rest_register_employee_view')
+);
+const APIRESTRegisterEmployeePresenter = require(
+    path.join(process.cwd(), 'src', 'presentation', 'apiRest', 'presenter', 'api_rest_register_employee_presenter')
+);
+const SQLiteEmployeeRepository = require(
+    path.join(process.cwd(), 'src', 'repository', 'employee', 'sqlite_employee_repository')
+);
+const RegisterEmployeeRequest = require(
+    path.join(process.cwd(), 'src', 'domain', 'dto', 'request', 'register_employee_request')
+);
+const RegisterEmployeeInteractor = require(
+    path.join(process.cwd(), 'src', 'domain', 'interactors', 'register_employee_interactor')
+);
 
 class APIRESTController {
     constructor(serverResponse) {

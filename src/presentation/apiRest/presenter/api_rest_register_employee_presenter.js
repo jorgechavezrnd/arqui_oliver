@@ -1,5 +1,10 @@
-const RegisterEmployeePresenter = require('../../../domain/boundary/output/register_employee_presenter');
-const APIRESTRegisterEmployeeViewModel = require('../viewModel/api_rest_register_employee_view_model');
+const path = require('path');
+const RegisterEmployeePresenter = require(
+    path.join(process.cwd(), 'src', 'domain', 'boundary', 'output', 'register_employee_presenter')
+);
+const APIRESTRegisterEmployeeViewModel = require(
+    path.join(process.cwd(), 'src', 'presentation', 'apiRest', 'viewModel', 'api_rest_register_employee_view_model')
+);
 
 class APIRESTRegisterEmployeePresenter extends RegisterEmployeePresenter {
     constructor(apiRestRegisterEmployeeView) {

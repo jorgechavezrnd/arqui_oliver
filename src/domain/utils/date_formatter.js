@@ -1,15 +1,19 @@
-class Utils {
+const fs = require('fs');
+const path = require('path');
+const sqlite3 = require('sqlite3').verbose();
+
+class DateFormatter {
     static formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
             day = '' + d.getDate(),
             year = d.getFullYear();
-    
+
         if (month.length < 2) month = '0' + month;
         if (day.length < 2) day = '0' + day;
-    
+
         return [day, month, year].join('-');
     }
 }
 
-module.exports = Utils;
+module.exports = DateFormatter;

@@ -1,7 +1,16 @@
-const RegisterEmployeeUseCase = require('../boundary/input/register_employee_use_case');
-const RegisterEmployeeResponse = require('../dto/response/register_employee_response');
-const Employee = require('../entities/employee');
-const Utils = require('../utils/utils');
+const path = require('path');
+const RegisterEmployeeUseCase = require(
+    path.join(process.cwd(), 'src', 'domain', 'boundary', 'input', 'register_employee_use_case')
+);
+const RegisterEmployeeResponse = require(
+    path.join(process.cwd(), 'src', 'domain', 'dto', 'response', 'register_employee_response')
+);
+const Employee = require(
+    path.join(process.cwd(), 'src', 'domain', 'entities', 'employee')
+);
+const DateFormatter = require(
+    path.join(process.cwd(), 'src', 'domain', 'utils', 'date_formatter')
+);
 
 class RegisterEmployeeInteractor extends RegisterEmployeeUseCase {
     constructor(employeeRepository, registerEmployeePresenter) {
@@ -15,7 +24,7 @@ class RegisterEmployeeInteractor extends RegisterEmployeeUseCase {
         let name = request.name;
         let type = request.type;
         let isInLaborUnion = request.isInLaborUnion;
-        let registrationDate = Utils.formatDate(new Date());
+        let registrationDate = DateFormatter.formatDate(new Date());
 
         let employee = new Employee(id, name, type, isInLaborUnion, registrationDate);
 
