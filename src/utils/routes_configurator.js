@@ -3,9 +3,6 @@ const path = require('path');
 const APIRESTController = require(
     path.join(process.cwd(), 'src', 'presentation', 'apiRest', 'controller', 'api_rest_controller')
 );
-const EmployeeRegistrationFormViewModel = require(
-    path.join(process.cwd(), 'src', 'presentation', 'ejs', 'viewModel', 'employee_registration_form_view_model')
-);
 
 const router = new Router();
 
@@ -19,21 +16,7 @@ router.post('/registerEmployeeUseCase', async (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    let employeeRegistrationFormViewModel = new EmployeeRegistrationFormViewModel(
-        'Nuevo Empleado',
-        'CI',
-        'Nombre',
-        'Tipo',
-        'Está en el sidicato',
-        'Registrar',
-        {
-            'Por hora': 'H',
-            'Fijo': 'F',
-            'Por comisión': 'C',
-        }
-    );
-
-    res.render('employee_registration_form_view', { model: employeeRegistrationFormViewModel });
+    res.render('employee_registration_form_view');
 });
 
 module.exports = router;

@@ -5,38 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title><%= model.title %></title>
+    <title>Nuevo Empleado</title>
   </head>
   <body>
     <div class="container">
       <div class="col-xs-8 col-xs-offset-2">
-        <h2 class="text-center"><%= model.title %></h2>
+        <h2 class="text-center">Nuevo Empleado</h2>
         <form method="post" role="form" action="/registerEmployeeUseCase">
           <div class="form-group">
-            <label for="id"><%= model.ciText %></label>
+            <label for="id">CI</label>
             <input name="id" type="text" class="form-control" placeholder="CI">
           </div>
           <div class="form-group">
-            <label for="name"><%= model.nameText %></label>
+            <label for="name">Nombre</label>
             <input name="name" type="text" class="form-control" placeholder="Nombre">
           </div>
           <div class="form-group">
-            <label for="type"><%= model.typeText %></label>
+            <label for="type">Tipo</label>
             <select name="type" class="form-control" id="exampleFormControlSelect1">
-              <% for (let employeeType in model.employeeTypes) { %>
-                <option value="<%= model.employeeTypes[employeeType] %>"><%= employeeType %></option>
-              <% } %>
+                <option value="H">Por hora</option>
+                <option value="F">Fijo</option>
+                <option value="C">Por comisión</option>
             </select>
           </div>
           <div class="form-group">
-              <label for="isInLaborUnion"><%= model.isInLaborUnionText %></label>
+              <label for="isInLaborUnion">Está en el sidicato</label>
               <select name="isInLaborUnion" class="form-control" id="exampleFormControlSelect1">
                 <option value="1">Si</option>
                 <option value="0">No</option>
               </select>
             </div>
           <div class="form-group">
-            <button class="btn btn-primary"><%= model.registerButtonText %></button>
+            <button class="btn btn-primary">Registrar</button>
           </div>
         </form>
       </div>
