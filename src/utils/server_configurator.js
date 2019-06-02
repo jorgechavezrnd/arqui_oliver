@@ -1,7 +1,10 @@
 const express = require('express');
 const path = require('path');
-const RoutesConfigurator = require(
-    path.join(process.cwd(), 'src', 'utils', 'routes_configurator')
+const APIRESTRoutesConfigurator = require(
+    path.join(process.cwd(), 'src', 'utils', 'api_rest_routes_configurator')
+);
+const EJSRoutesConfigurator = require(
+    path.join(process.cwd(), 'src', 'utils', 'ejs_routes_configurator')
 );
 
 class ServerConfigurator {
@@ -20,7 +23,8 @@ class ServerConfigurator {
     }
 
     static setUpServerRoutes(server) {
-        server.use(RoutesConfigurator);
+        server.use(APIRESTRoutesConfigurator);
+        server.use(EJSRoutesConfigurator);
     }
 
     static startServer(server) {
