@@ -15,6 +15,15 @@ router.post('/registerEmployeeUseCase', async (req, res) => {
     console.log('Register Employee Use Case End');
 });
 
+router.get('/getEmployeesUseCase/:type', async (req, res) => {
+    console.log('Get Employees Use Case Start');
+    let apiRestController = new APIRESTController(res);
+
+    await apiRestController.getEmployeesUseCase(req.params);
+
+    console.log('Get Employees Use Case End');
+});
+
 router.get('/', (req, res) => {
     res.render('employee_registration_form_view');
 });
