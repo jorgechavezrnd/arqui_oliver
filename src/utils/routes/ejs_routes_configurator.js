@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const path = require('path');
 const HTTPRequestManager = require(
-    path.join(process.cwd(), 'src', 'utils', 'http_request_manager')
+    path.join(process.cwd(), 'src', 'utils', 'http', 'http_request_manager')
 );
 
 const router = new Router();

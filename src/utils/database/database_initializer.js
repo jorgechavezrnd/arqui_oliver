@@ -13,7 +13,7 @@ class DatabaseInitializer {
                     }
                 });
 
-                let ddlContent = fs.readFileSync(path.join(process.cwd(), 'src', 'utils', 'ddl.sql'), 'utf8');
+                let ddlContent = fs.readFileSync(path.join(process.cwd(), 'src', 'utils', 'database', 'ddl.sql'), 'utf8');
                 let ddlStatements = ddlContent.split(';');
     
                 ddlStatements.forEach(function(ddlStatement) {

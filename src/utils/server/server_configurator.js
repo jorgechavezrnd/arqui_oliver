@@ -1,10 +1,10 @@
 const express = require('express');
 const path = require('path');
 const APIRESTRoutesConfigurator = require(
-    path.join(process.cwd(), 'src', 'utils', 'api_rest_routes_configurator')
+    path.join(process.cwd(), 'src', 'utils', 'routes', 'api_rest_routes_configurator')
 );
 const EJSRoutesConfigurator = require(
-    path.join(process.cwd(), 'src', 'utils', 'ejs_routes_configurator')
+    path.join(process.cwd(), 'src', 'utils', 'routes', 'ejs_routes_configurator')
 );
 
 class ServerConfigurator {

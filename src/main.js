@@ -1,10 +1,10 @@
 const express = require('express');
 const path = require('path');
 const DatabaseInitializer = require(
-    path.join(process.cwd(), 'src', 'utils', 'database_initializer')
+    path.join(process.cwd(), 'src', 'utils', 'database', 'database_initializer')
 );
 const ServerConfigurator = require(
-    path.join(process.cwd(), 'src', 'utils', 'server_configurator')
+    path.join(process.cwd(), 'src', 'utils', 'server', 'server_configurator')
 );
 
 async function main() {
