@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+    <title>Empleados Registrados</title>
+  </head>
+  <body>
+    <% include partials/header %>
+    <h2 class="text-center">Empleados Registrados</h2>
+    
+    <% if (employeesList.length) { %>
+      <table class="table mt-2">
+        <thead class="thead-dark">
+          <tr>
+            <th>CI</th>
+            <th>Nombre</th>
+            <th>TIPO</th>
+            <th>ESTÁ EN EL CINDICATO</th>
+            <th>FECHA DE REGISTRO</th>
+          </tr>
+        </thead>
+        <% employeesList.forEach((employee) => { %>
+          <tr>
+            <td><%= employee.id %></td>
+            <td><%= employee.name %></td>
+            <td><%= employee.type %></td>
+            <td><%= employee.isInLaborUnion %></td>
+            <td><%= employee.registrationDate %></td>
+          </tr>
+        <% }); %>
+      </table>
+    <% } else { %>
+      <p class="text-center">Sin registros</p>
+    <% } %>
+  </body>
+</html>
