@@ -32,5 +32,19 @@
     <% } else { %>
       <p class="text-center">Sin registros</p>
     <% } %>
+
+    <% if (locals.registerEmployeeResponse) { %>
+      <% if (registerEmployeeResponse.isSuccessfulRegistration) { %>
+        <div class="alert alert-success alert-dismissible fixed-bottom">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>CORRECTO!</strong> <%= registerEmployeeResponse.message %>
+        </div>
+      <% } else { %>
+        <div class="alert alert-danger alert-dismissible fixed-bottom">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>ERROR!</strong> <%= registerEmployeeResponse.message %>
+        </div>
+      <% } %>
+    <% } %>
   </body>
 </html>

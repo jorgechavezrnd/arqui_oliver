@@ -34,7 +34,7 @@ class RegisterEmployeeInteractor extends RegisterEmployeeUseCase {
             let registerEmployeeResponse = new RegisterEmployeeResponse(`Empleado ${employee.name} registrado correctamente`);
             this._registerEmployeePresenter.displayRegisterSuccess(registerEmployeeResponse);
         } else {
-            let registerEmployeeResponse = new RegisterEmployeeResponse(`ERROR: El empleado con el CI ${employee.id} ya existe`);
+            let registerEmployeeResponse = new RegisterEmployeeResponse(`El empleado con el CI ${employee.id} ya existe`);
             this._registerEmployeePresenter.displayRegisterFailed(registerEmployeeResponse);
         }
     }
